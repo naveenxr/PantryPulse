@@ -17,7 +17,14 @@ app.use("/api/foods", foodRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/ai", aiRoutes);
 
-// Health Check Route
+// Root Route & Health Check
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "healthy",
+    service: "PantryPulse Backend API",
+  });
+});
+
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
@@ -28,17 +35,9 @@ app.get("/api/health", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// Async Server Startup (Connects DB before listening)
-const startServer = async () => {
-  try {
-    await connectDB();
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server running on port ${PORT} (0.0.0.0:${PORT})`);
-    });
-  } catch (error) {
-    console.error("Failed to start server due to DB connection error:", error.message);
-    process.exit(1);
-  }
-};
-
-startServer();
+// Start Express server immediately for Render port binding
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`PantryPulse Server listening on port ${PORT} (0.0.0.0:${PORT})`);
+  // Connect to MongoDB Atlas in background
+  connectDB();
+});
