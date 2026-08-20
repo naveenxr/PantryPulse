@@ -1,0 +1,29 @@
+{
+  "name": "pantrypulse",
+  "version": "1.0.0",
+  "description": "PantryPulse",
+  "main": "server/src/server.js",
+  "scripts": {
+    "dev": "nodemon server/src/server.js",
+    "start": "node server/src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naveenxr/PantryPulse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.9.3",
+    "node-cron": "^4.6.0",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
