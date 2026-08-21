@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const seedDatabaseCollections = require("./seedDB");
 
 /**
  * Connect to MongoDB database using process.env.MONGODB_URI.
- * Connects asynchronously with error logging to prevent web server crash on startup.
+ * Connects asynchronously & seeds all 4 database collections (users, fooditems, products, feedbacks).
  */
 const connectDB = async () => {
   try {
@@ -10,6 +11,10 @@ const connectDB = async () => {
       serverSelectionTimeoutMS: 5000,
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
+    
+    // Automatically seed all required collections
+    await seedDatabaseCollections();
+    
     return conn;
   } catch (error) {
     console.error(`MongoDB Connection Warning: ${error.message}`);

@@ -5,6 +5,8 @@ const connectDB = require("./config/db");
 const foodRoutes = require("./routes/foodRoutes");
 const productRoutes = require("./routes/productRoutes");
 const aiRoutes = require("./routes/aiRoutes");
+const cvRoutes = require("./routes/cvRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use("/api/foods", foodRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/pantry", cvRoutes);
+app.use("/api/auth", authRoutes);
 
 // Root Route & Health Check
 app.get("/", (req, res) => {

@@ -10,9 +10,12 @@ const {
   consumeFood,
 } = require("../controllers/foodController");
 
+const { scanFoodImage } = require("../controllers/cvController");
+
 // Base path: /api/foods
 
-// Collection routes
+// Scan & collection routes
+router.post("/scan", scanFoodImage);
 router.post("/", createFood);
 router.get("/", getFoods);
 
